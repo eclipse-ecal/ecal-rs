@@ -1,0 +1,12 @@
+syntax = "proto3";
+package ecal_rs;
+
+// topic: /kpns/test/ping
+message Ping {
+  uint64 sync = 1;
+}
+
+// topic: /kpns/test/pong
+message Pong {
+  uint64 sync = 1;
+}
