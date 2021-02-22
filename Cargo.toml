@@ -1,7 +1,12 @@
 [package]
 name = "ecal"
 version = "0.1.0"
-authors = ["Chip Collier <chip@kopernikusauto.com>", "Denys"]
+authors = [
+    "Chip Collier <chip@kopernikusauto.com>",
+    "Denys Zariaiev <denys@kopernikusauto.com>",
+    "Massimo Innocentini <massimo@kopernikusauto.com>",
+    "Ignat Georgiev <ignat@kopernikusauto.com>"
+]
 edition = "2018"
 publish = false
 description = "Bindings to the eCAL library"
