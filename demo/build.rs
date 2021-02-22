@@ -10,6 +10,8 @@ fn main() {
 
     // Automatically derive ecal message for these types.
     config.type_attribute(".", "#[derive(ecal::Message)]");
+    // This is influencing how the type names are derived and
+    // ultimately displayed in eCAL mon.
     config.type_attribute(".", "#[type_prefix = \"kpns_msgs.\"]");
 
     // Compile proto messages
