@@ -13,8 +13,8 @@ pool:
   vmImage: $(image_name)
 
 steps:
-- script: cargo build
-  displayName: 'cargo build'
-- script: cargo clippy
+- script: cargo clippy -- --deny clippy::all
   displayName: 'clippy'
+- script: cargo test
+  displayName: 'cargo test'
 
