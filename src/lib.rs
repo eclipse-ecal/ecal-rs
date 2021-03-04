@@ -382,7 +382,7 @@ where
             if !buf.is_null() {
                 log::warn!("Non-null pointer returned from recv, but bytes_received was 0!");
             }
-            return Err(CalError::Timeout.into());
+            Err(CalError::Timeout.into())
         }
     }
 

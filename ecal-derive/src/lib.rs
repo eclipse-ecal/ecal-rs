@@ -9,7 +9,7 @@ pub fn ecal_message_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let implementor = &input.ident;
 
-    let type_name = find_type_name(&input.attrs).unwrap_or(implementor.to_string());
+    let type_name = find_type_name(&input.attrs).unwrap_or_else(|| implementor.to_string());
     let prefix = find_prefix(&input.attrs).unwrap_or_default();
 
     let full_type_name = format!("{}{}", prefix, type_name);
@@ -30,9 +30,7 @@ fn find_type_name(attrs: &[Attribute]) -> Option<String> {
         if let Some(inner) = extract_str_lit(attr) {
             return Some(inner.value());
         } else {
-            panic!(
-                "Please use #[type_name = \"...\"] attribute to specify a type name"
-            );
+            panic!("Please use #[type_name = \"...\"] attribute to specify a type name");
         }
     }
 

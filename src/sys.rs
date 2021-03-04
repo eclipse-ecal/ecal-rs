@@ -7,9 +7,9 @@ pub const ECAL_ALLOCATE_4ME: u32 = 0;
 pub const ECAL_VERSION_MAJOR: u32 = 5;
 pub const ECAL_VERSION_MINOR: u32 = 5;
 pub const ECAL_VERSION_PATCH: u32 = 5;
-pub const ECAL_VERSION: &'static [u8; 18usize] = b"v5.5.5-3-gb779f09\0";
-pub const ECAL_DATE: &'static [u8; 11usize] = b"07.05.2020\0";
-pub const ECAL_PLATFORMTOOLSET: &'static [u8; 1usize] = b"\0";
+pub const ECAL_VERSION: &[u8; 18usize] = b"v5.5.5-3-gb779f09\0";
+pub const ECAL_DATE: &[u8; 11usize] = b"07.05.2020\0";
+pub const ECAL_PLATFORMTOOLSET: &[u8; 1usize] = b"\0";
 pub const eCAL_Init_Publisher: u32 = 1;
 pub const eCAL_Init_Subscriber: u32 = 2;
 pub const eCAL_Init_Service: u32 = 4;
@@ -70,9 +70,7 @@ extern "C" {
     #[doc = " @param unit_name_  Defines the name of the eCAL unit."]
     #[doc = ""]
     #[doc = " @return  Zero if succeeded."]
-    pub fn eCAL_SetUnitName(
-        unit_name_: *const ::std::os::raw::c_char,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_SetUnitName(unit_name_: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Finalize eCAL API."]
@@ -80,9 +78,7 @@ extern "C" {
     #[doc = " @param components_  Defines which component to initialize (not yet supported)."]
     #[doc = ""]
     #[doc = " @return Zero if succeeded, 1 if already finalized, -1 if failed."]
-    pub fn eCAL_Finalize(
-        components_: ::std::os::raw::c_uint,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Finalize(components_: ::std::os::raw::c_uint) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Check eCAL initialize state."]
@@ -90,9 +86,7 @@ extern "C" {
     #[doc = " @param component_  Check specific component or 0 for general state of eCAL core."]
     #[doc = ""]
     #[doc = " @return None zero if eCAL is initialized."]
-    pub fn eCAL_IsInitialized(
-        component_: ::std::os::raw::c_uint,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_IsInitialized(component_: ::std::os::raw::c_uint) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Return the eCAL process state."]
@@ -130,9 +124,7 @@ extern "C" {
     #[doc = " @param  event_name_  Event name (\"\" == unnamed)."]
     #[doc = ""]
     #[doc = " @return  Handle to opened event or NULL if failed."]
-    pub fn eCAL_Event_gOpenEvent(
-        event_name_: *const ::std::os::raw::c_char,
-    ) -> ECAL_HANDLE;
+    pub fn eCAL_Event_gOpenEvent(event_name_: *const ::std::os::raw::c_char) -> ECAL_HANDLE;
 }
 extern "C" {
     #[doc = " @brief Close an event."]
@@ -247,9 +239,7 @@ extern "C" {
     #[doc = " @param state_  Filter on / off state."]
     #[doc = ""]
     #[doc = " @return Zero if succeeded."]
-    pub fn eCAL_Monitoring_SetFilterState(
-        state_: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Monitoring_SetFilterState(state_: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Get monitoring protobuf string."]
@@ -542,9 +532,7 @@ extern "C" {
     #[doc = " @param proc_id_    Process id."]
     #[doc = ""]
     #[doc = " @return  None zero if successful."]
-    pub fn eCAL_Process_StopProcessID(
-        proc_id_: ::std::os::raw::c_int,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Process_StopProcessID(proc_id_: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 #[repr(i32)]
 #[doc = " @brief eCAL subscriber event callback struct."]
@@ -604,10 +592,7 @@ fn bindgen_test_layout_SReceiveCallbackDataC() {
         concat!("Alignment of ", stringify!(SReceiveCallbackDataC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReceiveCallbackDataC>())).buf as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).buf as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -617,10 +602,7 @@ fn bindgen_test_layout_SReceiveCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReceiveCallbackDataC>())).size as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).size as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -630,9 +612,7 @@ fn bindgen_test_layout_SReceiveCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReceiveCallbackDataC>())).id as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).id as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
@@ -642,10 +622,7 @@ fn bindgen_test_layout_SReceiveCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReceiveCallbackDataC>())).time as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).time as *const _ as usize },
         24usize,
         concat!(
             "Offset of field: ",
@@ -655,10 +632,7 @@ fn bindgen_test_layout_SReceiveCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReceiveCallbackDataC>())).clock as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).clock as *const _ as usize },
         32usize,
         concat!(
             "Offset of field: ",
@@ -714,10 +688,7 @@ fn bindgen_test_layout_SPubEventCallbackDataC() {
         concat!("Alignment of ", stringify!(SPubEventCallbackDataC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SPubEventCallbackDataC>())).type_ as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).type_ as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -727,10 +698,7 @@ fn bindgen_test_layout_SPubEventCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SPubEventCallbackDataC>())).time as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).time as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -740,10 +708,7 @@ fn bindgen_test_layout_SPubEventCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SPubEventCallbackDataC>())).clock as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).clock as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
@@ -782,10 +747,7 @@ fn bindgen_test_layout_SSubEventCallbackDataC() {
         concat!("Alignment of ", stringify!(SSubEventCallbackDataC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SSubEventCallbackDataC>())).type_ as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).type_ as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -795,10 +757,7 @@ fn bindgen_test_layout_SSubEventCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SSubEventCallbackDataC>())).time as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).time as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -808,10 +767,7 @@ fn bindgen_test_layout_SSubEventCallbackDataC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SSubEventCallbackDataC>())).clock as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).clock as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
@@ -892,9 +848,7 @@ fn bindgen_test_layout_SWriterQOSC() {
         concat!("Alignment of ", stringify!(SWriterQOSC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SWriterQOSC>())).history_kind as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -904,10 +858,7 @@ fn bindgen_test_layout_SWriterQOSC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SWriterQOSC>())).history_kind_depth as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind_depth as *const _ as usize },
         4usize,
         concat!(
             "Offset of field: ",
@@ -917,9 +868,7 @@ fn bindgen_test_layout_SWriterQOSC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SWriterQOSC>())).reliability as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).reliability as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -958,9 +907,7 @@ fn bindgen_test_layout_SReaderQOSC() {
         concat!("Alignment of ", stringify!(SReaderQOSC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReaderQOSC>())).history_kind as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -970,10 +917,7 @@ fn bindgen_test_layout_SReaderQOSC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReaderQOSC>())).history_kind_depth as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind_depth as *const _ as usize },
         4usize,
         concat!(
             "Offset of field: ",
@@ -983,9 +927,7 @@ fn bindgen_test_layout_SReaderQOSC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SReaderQOSC>())).reliability as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).reliability as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -1096,10 +1038,7 @@ extern "C" {
     #[doc = " @param qos_     Quality of service policies."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Pub_SetQOS(
-        handle_: ECAL_HANDLE,
-        qos_: SWriterQOSC,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Pub_SetQOS(handle_: ECAL_HANDLE, qos_: SWriterQOSC) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Get publisher quality of service attributes."]
@@ -1108,10 +1047,7 @@ extern "C" {
     #[doc = " @param qos_     Quality of service policies."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Pub_GetQOS(
-        handle_: ECAL_HANDLE,
-        qos_: *mut SWriterQOSC,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Pub_GetQOS(handle_: ECAL_HANDLE, qos_: *mut SWriterQOSC) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Set publisher send mode for specific transport layer."]
@@ -1259,9 +1195,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         concat!("Alignment of ", stringify!(SServiceInfoC))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).host_name as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).host_name as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
@@ -1271,10 +1205,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).service_name as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).service_name as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
@@ -1284,10 +1215,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).method_name as *const _
-                as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).method_name as *const _ as usize },
         16usize,
         concat!(
             "Offset of field: ",
@@ -1297,9 +1225,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).error_msg as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).error_msg as *const _ as usize },
         24usize,
         concat!(
             "Offset of field: ",
@@ -1309,9 +1235,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).ret_state as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).ret_state as *const _ as usize },
         32usize,
         concat!(
             "Offset of field: ",
@@ -1321,9 +1245,7 @@ fn bindgen_test_layout_SServiceInfoC() {
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SServiceInfoC>())).call_state as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).call_state as *const _ as usize },
         36usize,
         concat!(
             "Offset of field: ",
@@ -1380,9 +1302,7 @@ extern "C" {
     #[doc = " @param service_name_  Service name."]
     #[doc = ""]
     #[doc = " @return  Handle to created server or NULL if failed."]
-    pub fn eCAL_Server_Create(
-        service_name_: *const ::std::os::raw::c_char,
-    ) -> ECAL_HANDLE;
+    pub fn eCAL_Server_Create(service_name_: *const ::std::os::raw::c_char) -> ECAL_HANDLE;
 }
 extern "C" {
     #[doc = " @brief Destroy a server."]
@@ -1445,9 +1365,7 @@ extern "C" {
     #[doc = " @param service_name_  Service name."]
     #[doc = ""]
     #[doc = " @return  Handle to created client or NULL if failed."]
-    pub fn eCAL_Client_Create(
-        service_name_: *const ::std::os::raw::c_char,
-    ) -> ECAL_HANDLE;
+    pub fn eCAL_Client_Create(service_name_: *const ::std::os::raw::c_char) -> ECAL_HANDLE;
 }
 extern "C" {
     #[doc = " @brief Destroy a client."]
@@ -1531,9 +1449,7 @@ extern "C" {
     #[doc = " @param handle_  Client handle."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Client_RemResponseCallback(
-        handle_: ECAL_HANDLE,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Client_RemResponseCallback(handle_: ECAL_HANDLE) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Instance a subscriber."]
@@ -1574,10 +1490,7 @@ extern "C" {
     #[doc = " @param qos_     Quality of service policies."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Sub_SetQOS(
-        handle_: ECAL_HANDLE,
-        qos_: SReaderQOSC,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Sub_SetQOS(handle_: ECAL_HANDLE, qos_: SReaderQOSC) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Get subscriber quality of service attributes."]
@@ -1586,10 +1499,7 @@ extern "C" {
     #[doc = " @param qos_     Quality of service policies."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Sub_GetQOS(
-        handle_: ECAL_HANDLE,
-        qos_: *mut SReaderQOSC,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Sub_GetQOS(handle_: ECAL_HANDLE, qos_: *mut SReaderQOSC) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Set a set of id's to prefiltering topics (see eCAL_Pub_SetID)."]
@@ -1644,9 +1554,7 @@ extern "C" {
     #[doc = " @param  handle_  Subscriber handle."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Sub_RemReceiveCallback(
-        handle_: ECAL_HANDLE,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Sub_RemReceiveCallback(handle_: ECAL_HANDLE) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Add callback function for subscriber events."]
@@ -1735,9 +1643,7 @@ extern "C" {
     #[doc = " @param handle_  Subscriber handle."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
-    pub fn eCAL_Proto_Dyn_JSON_Sub_Destroy(
-        handle_: ECAL_HANDLE,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Proto_Dyn_JSON_Sub_Destroy(handle_: ECAL_HANDLE) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Add callback function for incoming receives."]
@@ -1790,9 +1696,7 @@ extern "C" {
     #[doc = " @param time_  Current time in ns."]
     #[doc = ""]
     #[doc = " @return  Zero if succeeded non zero otherwise."]
-    pub fn eCAL_Time_SetNanoSeconds(
-        time_: ::std::os::raw::c_longlong,
-    ) -> ::std::os::raw::c_int;
+    pub fn eCAL_Time_SetNanoSeconds(time_: ::std::os::raw::c_longlong) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief  Returns time synchronization state."]
@@ -1815,9 +1719,7 @@ extern "C" {
     #[doc = " nanoseconds. Limitations of the operating system might reduce the accuracy."]
     #[doc = ""]
     #[doc = " @param duration_nsecs_ the duration in nanoseconds"]
-    pub fn eCAL_Time_SleepForNanoseconds(
-        duration_nsecs_: ::std::os::raw::c_longlong,
-    );
+    pub fn eCAL_Time_SleepForNanoseconds(duration_nsecs_: ::std::os::raw::c_longlong);
 }
 extern "C" {
     #[doc = " @brief Get the current error code and status message"]
