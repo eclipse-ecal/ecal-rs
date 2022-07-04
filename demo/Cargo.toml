@@ -12,7 +12,7 @@ ctrlc = "3.1"
 ecal = { path="../" }
 prost = "0.7"
 log = "0.4"
-clap = "3.0.0-beta.2"
+clap = { version = "3.0.0-beta.2", features = ["derive"] }
 
 [build-dependencies]
 prost-build = "0.6.1"
