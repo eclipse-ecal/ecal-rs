@@ -1,0 +1,19 @@
+on: [push,pull_request]
+name: build
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v2
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - name: reg-fix
+        run: (echo -e "[registries]\nkpns = { index = \"https://dl.cloudsmith.io/Tot8Z2GUP4HKZABL/kopernikusauto/crates/cargo/index.git\" }" >~/.cargo/config.toml; ls; cat ~/.cargo/config.toml;)
+      - name: lint
+        env:
+          BUILDING_FOR_CLIPPY: 1
+        uses: kopernikusauto/clippy-check@v1.0.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --no-deps
