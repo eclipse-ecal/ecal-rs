@@ -1,6 +1,15 @@
 on: [push,pull_request]
 name: build and test
 jobs:
+  format-code:
+    name: Format code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v2
+      - uses: kopernikusauto/toolchain@v1
+        with:
+          toolchain: stable
+      - run: cargo fmt
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,8 +30,12 @@ jobs:
       - uses: kopernikusauto/toolchain@v1.0.6
         with:
           toolchain: stable
+      - run: add-apt-repository ppa:ecal/ecal-latest && apt-get update && apt-get install ecal
       - uses: kopernikusauto/cargo@v1.0.1
         with:
           command: test
-          args: --release
+          args: --release --lib demo
+        with:
+          command: test
+          args: --release --lib src
 
