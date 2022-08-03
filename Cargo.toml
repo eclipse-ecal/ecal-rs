@@ -8,8 +8,11 @@ authors = [
     "Ignat Georgiev <ignat@kopernikusauto.com>"
 ]
 edition = "2018"
-publish = false
+license = "Apache-2.0"
+repository = "https://github.com/kopernikusauto/ecal-rs/"
+publish = ["crates-io"]
 description = "Bindings to the eCAL library"
+keywords = ["ecal"]
 
 [features]
 default = ["derive", "use_prost"]

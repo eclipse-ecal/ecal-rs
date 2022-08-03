@@ -9,6 +9,7 @@ use std::{
 use thiserror::Error;
 
 #[cfg(feature = "derive")]
+#[macro_use]
 pub use ecal_derive::Message;
 
 pub mod sys;
