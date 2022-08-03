@@ -35,7 +35,6 @@ jobs:
         with:
           command: test
           args: --release --lib demo
-        with:
           command: test
           args: --release --lib src
 
