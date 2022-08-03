@@ -23,7 +23,7 @@ jobs:
       - uses: kopernikusauto/toolchain@v1.0.6
         with:
           toolchain: stable
-      - uses: kopernikusauto/cargo@v1
+      - uses: kopernikusauto/cargo@v1.0.1
         with:
           command: test
           args: --release --all-features
