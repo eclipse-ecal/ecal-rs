@@ -11,9 +11,19 @@ jobs:
       - name: reg-fix
         run: (echo -e "[registries]\nkpns = { index = \"https://dl.cloudsmith.io/Tot8Z2GUP4HKZABL/kopernikusauto/crates/cargo/index.git\" }" >~/.cargo/config.toml; ls; cat ~/.cargo/config.toml;)
       - name: lint
-        env:
-          BUILDING_FOR_CLIPPY: 1
         uses: kopernikusauto/clippy-check@v1.0.7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --no-deps
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --release --all-features
