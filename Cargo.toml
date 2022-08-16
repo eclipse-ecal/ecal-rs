@@ -8,8 +8,11 @@ authors = [
     "Ignat Georgiev <ignat@kopernikusauto.com>"
 ]
 edition = "2018"
-publish = false
+license = "Apache-2.0"
+repository = "https://github.com/kopernikusauto/ecal-rs/"
+publish = ["crates-io"]
 description = "Bindings to the eCAL library"
+keywords = ["ecal"]
 
 [features]
 default = ["derive", "use_prost"]
@@ -22,11 +25,11 @@ use_msgpack = ["rmp", "rmpv", "rmp-serde", "serde"]
 anyhow = "1.0"
 thiserror = "1"
 log = "0.4"
-prost = { version="0.7", optional=true }
-protobuf = { version="2", optional=true }
+prost = { version="0.11", optional=true }
+protobuf = { version="3", optional=true }
 rmp = { version="0.8", optional=true }
-rmpv = { version="0.4", optional=true }
-rmp-serde = { version="0.15", optional=true }
+rmpv = { version="1.0", optional=true }
+rmp-serde = { version="1.1", optional=true }
 serde = { version="1.0", optional=true }
 
 [target.'cfg(windows)'.dependencies]
@@ -38,7 +41,7 @@ path = "./ecal-derive"
 optional = true
 
 [dev-dependencies]
-env_logger = "0.8"
+env_logger = "0.9"
 
 [workspace]
 members = [

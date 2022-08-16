@@ -3,6 +3,12 @@ name = "ecal-derive"
 version = "0.1.0"
 authors = ["Denys Zariaiev <denys.zariaiev@gmail.com>"]
 edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/kopernikusauto/ecal-rs/"
+publish = ["crates-io"]
+description = "eCAL-derive macro; eCAL crate is a bindings to the eCAL library"
+keywords = ["ecal-drive"]
+
 
 [lib]
 proc-macro = true
