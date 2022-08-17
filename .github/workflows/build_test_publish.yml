@@ -1,4 +1,7 @@
 on:
+  pull_request: # necessary for on pull requests from forks etc.
+    branches:
+    - main
   push:
     # Pattern matched against refs/tags
     tags:        
