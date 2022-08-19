@@ -1,8 +1,7 @@
 on:
-  push:
-    # Pattern matched against refs/tags
-    tags:        
-      - '*'           # Push events to every tag not containing /
+  pull_request: # necessary for on pull requests from forks etc.
+    branches:
+    - main
   workflow_dispatch:
 
 name: Build, Test and Publish to crates.io
@@ -45,25 +44,3 @@ jobs:
         with:
           command: test
           args: --release --lib src
-  publish:
-    name: Publish crates
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: kopernikusauto/checkout@v2
-
-      - name: Install stable toolchain
-        uses: kopernikusauto/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-      - name : publish ecal-derive
-        run: |
-          cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-derive
-        env:
-          CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
-      - name: publish eCAL crate
-        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-rs
-        env:
-          CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
