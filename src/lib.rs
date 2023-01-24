@@ -430,6 +430,39 @@ where
             );
         }
     }
+
+    unsafe extern "C" fn recv_wrapper_full<F>(
+        _topic_name: *const c_char,
+        data: *const sys::SReceiveCallbackDataC,
+        ctx: *mut c_void,
+    ) where
+        F: FnMut(sys::SReceiveCallbackDataC, T),
+    {
+        let bytes = slice::from_raw_parts((*data).buf as *const u8, (*data).size as usize);
+
+        if let Ok(msg) = D::deserialize(bytes) {
+            log::trace!("Received {} bytes", bytes.len());
+            let cb_ptr = ctx as *mut F;
+            let callback = &mut *cb_ptr;
+            callback(*data, msg);
+        } else {
+            log::error!("Failed to decode message.");
+        }
+    }
+
+    /// Same as [`on_recv`](#method.on_recv), but instead of pass the Instant of the message this will pass
+    /// the entire content that arrives from the receive callback ([SReceiveCallbackDataC](sys::SReceiveCallbackDataC))
+    pub fn on_recv_full<'b, F: FnMut(sys::SReceiveCallbackDataC, T) + 'b>(&'b self, callback: F) {
+        // TODO: memory leak?
+        let callback = Box::into_raw(Box::new(callback));
+        unsafe {
+            sys::eCAL_Sub_AddReceiveCallbackC(
+                self.handle,
+                Some(Self::recv_wrapper_full::<F>),
+                callback as *mut _,
+            );
+        }
+    }
 }
 
 impl<T, D> Drop for Subscriber<T, D> {
