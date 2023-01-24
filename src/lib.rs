@@ -2,7 +2,7 @@ use anyhow::Result;
 use std::{
     env, ffi,
     marker::PhantomData,
-    os::raw::{c_char, c_int, c_long, c_void},
+    os::raw::{c_char, c_int, c_long, c_void, c_longlong},
     ptr, slice,
     time::{Duration, Instant},
 };
@@ -257,6 +257,11 @@ where
     }
 
     pub fn send(&self, msg: &T) -> Result<()> {
+        self.send_with_time(msg, -1)
+    }
+
+    /// Same as [send](#method.send) but let the caller set the time of the message
+    pub fn send_with_time(&self, msg: &T, time: i64) -> Result<()> {
         let mut buf = Vec::with_capacity(32);
         S::serialize(msg, &mut buf)?;
 
@@ -266,7 +271,7 @@ where
                 self.handle,
                 buf.as_ptr() as *const c_void,
                 bytes_expected as c_int,
-                -1,
+                time as c_longlong,
             )
         };
         log::trace!("Published {} / {} bytes", bytes_sent, bytes_expected);
