@@ -2,7 +2,7 @@ use anyhow::Result;
 use std::{
     env, ffi,
     marker::PhantomData,
-    os::raw::{c_char, c_int, c_long, c_void},
+    os::raw::{c_char, c_int, c_long, c_void, c_longlong},
     ptr, slice,
     time::{Duration, Instant},
 };
@@ -250,6 +250,14 @@ where
                 _ty: Default::default(),
             })
         }
+    }
+
+    pub fn set_id(&mut self, id: i64) -> bool {
+        unsafe { sys::eCAL_Pub_SetID(self.handle, id as c_longlong) == 0 }
+    }
+
+    pub fn shm_set_buffer_count(&mut self, buffer_num: usize) -> bool {
+        unsafe { sys::eCAL_Pub_ShmSetBufferCount(self.handle, buffer_num as c_long) == 0 }
     }
 
     pub fn is_subscribed(&self) -> bool {
