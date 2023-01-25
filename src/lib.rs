@@ -187,6 +187,49 @@ pub mod format {
             }
         }
     }
+
+    #[cfg(feature = "use_capnp")]
+    pub mod capnp {
+        use anyhow::Result;
+        use std::marker::PhantomData;
+
+        use super::{Deserializer, Format, Serializer};
+        use capnp::{
+            message::{ReaderOptions, TypedBuilder, TypedReader},
+            serialize::{read_message_from_flat_slice, write_message_to_words, SliceSegments},
+            traits::Owned,
+        };
+
+        pub struct Capnp<T: Owned> {
+            _t: PhantomData<T>,
+        }
+
+        impl<T: Owned> Format for Capnp<T> {
+            fn topic_type() -> String {
+                "Capnproto".into()
+            }
+
+            fn topic_description() -> Option<String> {
+                None
+            }
+        }
+
+        impl<T: Owned> Serializer<TypedBuilder<T>> for Capnp<T> {
+            fn serialize(message: &TypedBuilder<T>, buffer: &mut Vec<u8>) -> Result<()> {
+                buffer.append(&mut write_message_to_words(message.borrow_inner()));
+                Ok(())
+            }
+        }
+
+        impl<'a, T: Owned> Deserializer<'a, TypedReader<SliceSegments<'a>, T>> for Capnp<T> {
+            fn deserialize(buffer: &'a [u8]) -> Result<TypedReader<SliceSegments<'a>, T>> {
+                Ok(
+                    read_message_from_flat_slice(&mut buffer.clone(), ReaderOptions::default())?
+                        .into(),
+                )
+            }
+        }
+    }
 }
 
 #[cfg(feature = "use_msgpack")]
@@ -208,6 +251,18 @@ pub mod protobuf {
     use super::format::protobuf::Protobuf;
     pub type Publisher<T> = super::Publisher<T, Protobuf<T>>;
     pub type Subscriber<T> = super::Subscriber<T, Protobuf<T>>;
+}
+
+#[cfg(feature = "use_capnp")]
+pub mod capnp {
+    use capnp::{
+        message::{TypedBuilder, TypedReader},
+        serialize::SliceSegments,
+    };
+
+    use super::format::capnp::Capnp;
+    pub type Publisher<T> = super::Publisher<TypedBuilder<T>, Capnp<T>>;
+    pub type Subscriber<'a, T> = super::Subscriber<TypedReader<SliceSegments<'a>, T>, Capnp<T>>;
 }
 
 pub struct Publisher<T, S> {
