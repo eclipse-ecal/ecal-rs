@@ -1,0 +1,58 @@
+on: [push]
+
+name: Check code
+jobs:
+  format-code:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v3.3.0
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - run: cargo fmt
+
+  lint:
+    name: Lint using Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v3.3.0
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - name: lint
+        uses: kopernikusauto/clippy-check@v1.0.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --no-deps
+  
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v3.3.0
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: build
+          args: --release
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v3.3.0
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - run: sudo add-apt-repository ppa:ecal/ecal-latest && sudo apt-get update && sudo apt-get install ecal -y
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: test
+          args: --release --lib demo
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: test
+          args: --release --lib src
