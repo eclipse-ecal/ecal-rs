@@ -11,46 +11,49 @@ jobs:
     name: Format code and clippy-check
     runs-on: ubuntu-latest
     steps:
-      - uses: kopernikusauto/checkout@v2
+      - uses: kopernikusauto/checkout@v3.3
       - uses: kopernikusauto/toolchain@v1
         with:
           toolchain: stable
       - run: cargo fmt
+
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: kopernikusauto/checkout@v2
-      - uses: kopernikusauto/toolchain@v1.0.6
+      - uses: kopernikusauto/checkout@v3.3
+      - uses: kopernikusauto/toolchain@v1
         with:
           toolchain: stable
       - name: lint
-        uses: kopernikusauto/clippy-check@v1.0.7
+        uses: kopernikusauto/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --no-deps
+
   test:
     name: Test crates
     runs-on: ubuntu-latest
     steps:
-      - uses: kopernikusauto/checkout@v2
-      - uses: kopernikusauto/toolchain@v1.0.6
+      - uses: kopernikusauto/checkout@v3.3
+      - uses: kopernikusauto/toolchain@v1
         with:
           toolchain: stable
       - run: sudo add-apt-repository ppa:ecal/ecal-latest && sudo apt-get update && sudo apt-get install ecal -y
-      - uses: kopernikusauto/cargo@v1.0.1
+      - uses: kopernikusauto/cargo@v1
         with:
           command: test
           args: --release --lib demo
-      - uses: kopernikusauto/cargo@v1.0.1
+      - uses: kopernikusauto/cargo@v1
         with:
           command: test
           args: --release --lib src
+
   publish:
     name: Publish crates
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
-        uses: kopernikusauto/checkout@v2
+        uses: kopernikusauto/checkout@v3.3
 
       - name: Install stable toolchain
         uses: kopernikusauto/toolchain@v1
@@ -58,11 +61,13 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+
       - name : publish ecal-derive
         run: |
           cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-derive
         env:
           CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+
       - name: publish eCAL crate
         run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-rs
         env:
