@@ -1,13 +1,9 @@
-on:
-  pull_request: # necessary for pull requests from forks etc.
-    branches:
-    - main
-  workflow_dispatch:
+on: [push]
 
-name: Build, Test and Publish to crates.io
+name: Format, Lint, Build and Test
 jobs:
   format-code:
-    name: Format code and clippy-check
+    name: Format code
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
@@ -16,7 +12,8 @@ jobs:
           toolchain: stable
       - run: cargo fmt
 
-  build:
+  lint:
+    name: Lint crates using Clippy
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
@@ -28,6 +25,19 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --no-deps
+  
+  build:
+    name: Build crates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kopernikusauto/checkout@v3.3.0
+      - uses: kopernikusauto/toolchain@v1.0.6
+        with:
+          toolchain: stable
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: build
+          args: --release
 
   test:
     name: Test crates
@@ -46,28 +56,3 @@ jobs:
         with:
           command: test
           args: --release --lib src
-
-  publish:
-    name: Publish crates
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout sources
-        uses: kopernikusauto/checkout@v3.3.0
-
-      - name: Install stable toolchain
-        uses: kopernikusauto/toolchain@v1.0.6
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-
-      - name : publish ecal-derive
-        run: |
-          cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-derive --dry-run
-        env:
-          CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
-
-      - name: publish eCAL crate
-        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-rs --dry-run
-        env:
-          CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
