@@ -5,10 +5,10 @@ on:
       - 'v.*'
   workflow_dispatch:
 
-name: Build, Test and Publish to crates.io
+name: Publish
 jobs:
   publish:
-    name: Publish crates
+    name: Publish crates to crates.io
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources

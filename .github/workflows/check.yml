@@ -1,9 +1,9 @@
 on: [push]
 
-name: Format, Lint, Build and Test
+name: Check code
 jobs:
   format-code:
-    name: Format code
+    name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
@@ -13,7 +13,7 @@ jobs:
       - run: cargo fmt
 
   lint:
-    name: Lint crates using Clippy
+    name: Lint using Clippy
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
@@ -27,7 +27,7 @@ jobs:
           args: --no-deps
   
   build:
-    name: Build crates
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
@@ -40,7 +40,7 @@ jobs:
           args: --release
 
   test:
-    name: Test crates
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: kopernikusauto/checkout@v3.3.0
