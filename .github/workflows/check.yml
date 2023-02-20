@@ -38,6 +38,11 @@ jobs:
         with:
           command: build
           args: --release
+      # Build again with all features.
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: build
+          args: --release --all-features
 
   test:
     name: Test
@@ -56,3 +61,8 @@ jobs:
         with:
           command: test
           args: --release --lib src
+      # Test again with all features.
+      - uses: kopernikusauto/cargo@v1.0.1
+        with:
+          command: test
+          args: --release --lib src --all-features
