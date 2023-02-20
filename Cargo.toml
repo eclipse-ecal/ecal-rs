@@ -1,6 +1,6 @@
 [package]
 name = "ecal"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
     "Chip Collier <chip@kopernikusauto.com>",
     "Denys Zariaiev <denys@kopernikusauto.com>",
