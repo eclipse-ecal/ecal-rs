@@ -1088,6 +1088,18 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[doc = " @brief Set publisher maximum number of used shared memory buffers."]
+    #[doc = ""]
+    #[doc = " @param handle_     Publisher handle."]
+    #[doc = " @param buffering_  Maximum number of used buffers (needs to be greater than 1, default = 1)."]
+    #[doc = ""]
+    #[doc = " @return  True if it succeeds, false if it fails."]
+    pub fn eCAL_Pub_ShmSetBufferCount(
+        handle_: ECAL_HANDLE,
+        buffering_: ::std::os::raw::c_long,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
     #[doc = " @brief Query if the publisher is subscribed."]
     #[doc = ""]
     #[doc = " @param handle_  Publisher handle."]
