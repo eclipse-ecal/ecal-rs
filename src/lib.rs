@@ -230,12 +230,12 @@ pub mod format {
             }
         }
 
-        impl<'a, T: Owned> Deserializer<'a, TypedReader<SliceSegments<'a>, T>> for Capnp<T> {
-            fn deserialize(buffer: &'a [u8]) -> Result<TypedReader<SliceSegments<'a>, T>> {
-                Ok(
-                    read_message_from_flat_slice(&mut buffer.clone(), ReaderOptions::default())?
-                        .into(),
-                )
+        impl<'a, T> Deserializer<'a, TypedReader<SliceSegments<'a>, T>> for Capnp<T>
+        where
+            T: crate::Message + Owned,
+        {
+            fn deserialize(mut buffer: &'a [u8]) -> Result<TypedReader<SliceSegments<'a>, T>> {
+                Ok(read_message_from_flat_slice(&mut buffer, ReaderOptions::default())?.into())
             }
         }
     }
