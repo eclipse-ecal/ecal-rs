@@ -200,13 +200,19 @@ pub mod format {
             traits::Owned,
         };
 
-        pub struct Capnp<T: Owned> {
+        pub struct Capnp<T>
+        where
+            T: crate::Message + Owned,
+        {
             _t: PhantomData<T>,
         }
 
-        impl<T: Owned> Format for Capnp<T> {
+        impl<T> Format for Capnp<T>
+        where
+            T: crate::Message + Owned,
+        {
             fn topic_type() -> String {
-                "Capnproto".into()
+                format!("capnp:{}", T::type_name())
             }
 
             fn topic_description() -> Option<String> {
@@ -214,7 +220,10 @@ pub mod format {
             }
         }
 
-        impl<T: Owned> Serializer<TypedBuilder<T>> for Capnp<T> {
+        impl<T> Serializer<TypedBuilder<T>> for Capnp<T>
+        where
+            T: crate::Message + Owned,
+        {
             fn serialize(message: &TypedBuilder<T>, buffer: &mut Vec<u8>) -> Result<()> {
                 buffer.append(&mut write_message_to_words(message.borrow_inner()));
                 Ok(())
