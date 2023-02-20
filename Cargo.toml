@@ -20,6 +20,7 @@ derive = ["ecal-derive"]
 use_protobuf = ["protobuf"]
 use_prost = ["prost"]
 use_msgpack = ["rmp", "rmpv", "rmp-serde", "serde"]
+use_capnp = ["capnp"]
 
 [dependencies]
 anyhow = "1.0"
@@ -31,6 +32,7 @@ rmp = { version="0.8", optional=true }
 rmpv = { version="1.0", optional=true }
 rmp-serde = { version="1.1", optional=true }
 serde = { version="1.0", optional=true }
+capnp = { version="0.16.0", optional=true }
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version="0.3", features=["iphlpapi"]}
