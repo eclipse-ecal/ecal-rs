@@ -2,7 +2,7 @@ on:
   push:
     # Run on new versions.
     tags:        
-      - 'v.*'
+      - 'ecal-derive-v.*'
   workflow_dispatch:
 
 name: Publish
@@ -24,10 +24,5 @@ jobs:
       - name : publish ecal-derive
         run: |
           cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal-derive
-        env:
-          CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
-
-      - name: publish eCAL crate
-        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN || github.token }} -p ecal
         env:
           CRATES_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
