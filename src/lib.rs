@@ -2,14 +2,13 @@ use anyhow::Result;
 use std::{
     env, ffi,
     marker::PhantomData,
-    os::raw::{c_char, c_int, c_long, c_void, c_longlong},
+    os::raw::{c_char, c_int, c_long, c_longlong, c_void},
     ptr, slice,
     time::{Duration, Instant},
 };
 use thiserror::Error;
 
 #[cfg(feature = "derive")]
-#[macro_use]
 pub use ecal_derive::Message;
 
 pub mod sys;
@@ -57,7 +56,6 @@ pub mod format {
     pub mod msgpack {
         use super::{Deserializer, Format, Serializer};
         use anyhow::{Error, Result};
-        use rmp as msgpack;
         use serde::{Deserialize, Serialize};
         use std::marker::PhantomData;
 
@@ -84,7 +82,7 @@ pub mod format {
             T: Serialize + crate::Message,
         {
             fn serialize(message: &T, buf: &mut Vec<u8>) -> Result<()> {
-                msgpack::encode::write(buf, message).map_err(Error::from)
+                rmp_serde::encode::write(buf, message).map_err(Error::from)
             }
         }
 
@@ -93,7 +91,7 @@ pub mod format {
             T: Deserialize<'a> + crate::Message,
         {
             fn deserialize(buffer: &'a [u8]) -> Result<T> {
-                msgpack::decode::from_read_ref(buffer).map_err(Error::from)
+                rmp_serde::from_slice(buffer).map_err(Error::from)
             }
         }
     }
@@ -154,10 +152,10 @@ pub mod format {
 
         impl<T> Format for Protobuf<T>
         where
-            T: ::protobuf::Message,
+            T: crate::Message + ::protobuf::Message,
         {
             fn topic_type() -> String {
-                format!("proto:{}", T::descriptor_static().full_name())
+                format!("proto:{}", T::type_name())
             }
 
             fn topic_description() -> Option<String> {
@@ -171,7 +169,7 @@ pub mod format {
 
         impl<T> Serializer<T> for Protobuf<T>
         where
-            T: ::protobuf::Message,
+            T: crate::Message + ::protobuf::Message,
         {
             fn serialize(message: &T, buf: &mut Vec<u8>) -> Result<()> {
                 message.write_to_vec(buf).map_err(Error::from)

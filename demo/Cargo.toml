@@ -15,5 +15,5 @@ log = "0.4"
 clap = "3.2.16"
 
 [build-dependencies]
-prost-build = "0.11.1"
+prost-build = "0.11.8"
 protoc-rust = "2"
