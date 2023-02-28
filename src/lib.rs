@@ -2,14 +2,13 @@ use anyhow::Result;
 use std::{
     env, ffi,
     marker::PhantomData,
-    os::raw::{c_char, c_int, c_long, c_void, c_longlong},
+    os::raw::{c_char, c_int, c_long, c_longlong, c_void},
     ptr, slice,
     time::{Duration, Instant},
 };
 use thiserror::Error;
 
 #[cfg(feature = "derive")]
-#[macro_use]
 pub use ecal_derive::Message;
 
 pub mod sys;
