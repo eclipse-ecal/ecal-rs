@@ -14,5 +14,7 @@
 
 - Add support for capnproto via a feature flag (#11).
 
+- Get optional protobuf, msgpack features compiling again (#13).
+
 ### Misc
 - Updates to CI, including building and testing with all features.
