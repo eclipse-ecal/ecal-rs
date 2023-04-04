@@ -1,5 +1,5 @@
 use anyhow::Result;
-use clap::Clap;
+use clap::Parser;
 use std::sync::{
     atomic::{AtomicBool, Ordering},
     Arc,
@@ -11,7 +11,7 @@ mod ecal_rs;
 type Publisher<T> = ecal::prost::Publisher<T>;
 type Subscriber<T> = ecal::prost::Subscriber<T>;
 
-#[derive(Clap)]
+#[derive(Parser)]
 struct Opts {
     #[clap(long)]
     pong: bool,
