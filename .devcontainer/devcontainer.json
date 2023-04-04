@@ -1,0 +1,16 @@
+// https://code.visualstudio.com/docs/devcontainers/containers
+{
+    "image": "ubuntu:22.04",
+    // `software-properties-common` to get `add-apt-repository`
+    // `build-essential` for a C compiler
+    // `protobuf-compiler` for `protoc`
+    "onCreateCommand": "apt update && apt install software-properties-common build-essential git protobuf-compiler -y && add-apt-repository ppa:ecal/ecal-latest -y && apt-get update && apt-get install ecal curl -y && curl https://sh.rustup.rs -sSf | sh -s -- -y",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "serayuzgur.crates"
+            ]
+        }
+    }
+}
