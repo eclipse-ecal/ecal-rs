@@ -579,69 +579,7 @@ pub struct SReceiveCallbackDataC {
     #[doc = "!< source write clock"]
     pub clock: ::std::os::raw::c_longlong,
 }
-#[test]
-fn bindgen_test_layout_SReceiveCallbackDataC() {
-    assert_eq!(
-        ::std::mem::size_of::<SReceiveCallbackDataC>(),
-        40usize,
-        concat!("Size of: ", stringify!(SReceiveCallbackDataC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SReceiveCallbackDataC>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SReceiveCallbackDataC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).buf as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReceiveCallbackDataC),
-            "::",
-            stringify!(buf)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).size as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReceiveCallbackDataC),
-            "::",
-            stringify!(size)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).id as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReceiveCallbackDataC),
-            "::",
-            stringify!(id)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).time as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReceiveCallbackDataC),
-            "::",
-            stringify!(time)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).clock as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReceiveCallbackDataC),
-            "::",
-            stringify!(clock)
-        )
-    );
-}
+
 impl Default for SReceiveCallbackDataC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -675,49 +613,7 @@ pub struct SPubEventCallbackDataC {
     #[doc = "!< event clock"]
     pub clock: ::std::os::raw::c_longlong,
 }
-#[test]
-fn bindgen_test_layout_SPubEventCallbackDataC() {
-    assert_eq!(
-        ::std::mem::size_of::<SPubEventCallbackDataC>(),
-        24usize,
-        concat!("Size of: ", stringify!(SPubEventCallbackDataC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SPubEventCallbackDataC>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SPubEventCallbackDataC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).type_ as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SPubEventCallbackDataC),
-            "::",
-            stringify!(type_)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).time as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SPubEventCallbackDataC),
-            "::",
-            stringify!(time)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).clock as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SPubEventCallbackDataC),
-            "::",
-            stringify!(clock)
-        )
-    );
-}
+
 impl Default for SPubEventCallbackDataC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -734,49 +630,7 @@ pub struct SSubEventCallbackDataC {
     #[doc = "!< event clock"]
     pub clock: ::std::os::raw::c_longlong,
 }
-#[test]
-fn bindgen_test_layout_SSubEventCallbackDataC() {
-    assert_eq!(
-        ::std::mem::size_of::<SSubEventCallbackDataC>(),
-        24usize,
-        concat!("Size of: ", stringify!(SSubEventCallbackDataC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SSubEventCallbackDataC>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SSubEventCallbackDataC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).type_ as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SSubEventCallbackDataC),
-            "::",
-            stringify!(type_)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).time as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SSubEventCallbackDataC),
-            "::",
-            stringify!(time)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).clock as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SSubEventCallbackDataC),
-            "::",
-            stringify!(clock)
-        )
-    );
-}
+
 impl Default for SSubEventCallbackDataC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -835,49 +689,7 @@ pub struct SWriterQOSC {
     #[doc = "< qos reliability mode"]
     pub reliability: eQOSPolicy_ReliabilityC,
 }
-#[test]
-fn bindgen_test_layout_SWriterQOSC() {
-    assert_eq!(
-        ::std::mem::size_of::<SWriterQOSC>(),
-        12usize,
-        concat!("Size of: ", stringify!(SWriterQOSC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SWriterQOSC>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SWriterQOSC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SWriterQOSC),
-            "::",
-            stringify!(history_kind)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind_depth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SWriterQOSC),
-            "::",
-            stringify!(history_kind_depth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).reliability as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SWriterQOSC),
-            "::",
-            stringify!(reliability)
-        )
-    );
-}
+
 impl Default for SWriterQOSC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -894,49 +706,7 @@ pub struct SReaderQOSC {
     #[doc = "< qos reliability mode"]
     pub reliability: eQOSPolicy_ReliabilityC,
 }
-#[test]
-fn bindgen_test_layout_SReaderQOSC() {
-    assert_eq!(
-        ::std::mem::size_of::<SReaderQOSC>(),
-        12usize,
-        concat!("Size of: ", stringify!(SReaderQOSC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SReaderQOSC>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SReaderQOSC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReaderQOSC),
-            "::",
-            stringify!(history_kind)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind_depth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReaderQOSC),
-            "::",
-            stringify!(history_kind_depth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).reliability as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SReaderQOSC),
-            "::",
-            stringify!(reliability)
-        )
-    );
-}
+
 impl Default for SReaderQOSC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -1194,79 +964,7 @@ pub struct SServiceInfoC {
     #[doc = "!< service call state"]
     pub call_state: eCallState,
 }
-#[test]
-fn bindgen_test_layout_SServiceInfoC() {
-    assert_eq!(
-        ::std::mem::size_of::<SServiceInfoC>(),
-        40usize,
-        concat!("Size of: ", stringify!(SServiceInfoC))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SServiceInfoC>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SServiceInfoC))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).host_name as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(host_name)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).service_name as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(service_name)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).method_name as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(method_name)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).error_msg as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(error_msg)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).ret_state as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(ret_state)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).call_state as *const _ as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SServiceInfoC),
-            "::",
-            stringify!(call_state)
-        )
-    );
-}
+
 impl Default for SServiceInfoC {
     fn default() -> Self {
         unsafe { ::std::mem::zeroed() }
@@ -1851,4 +1549,322 @@ extern "C" {
         topic_desc_: *mut ::std::os::raw::c_void,
         topic_desc_len_: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn bindgen_test_layout_SReceiveCallbackDataC() {
+        assert_eq!(
+            ::std::mem::size_of::<SReceiveCallbackDataC>(),
+            40usize,
+            concat!("Size of: ", stringify!(SReceiveCallbackDataC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SReceiveCallbackDataC>(),
+            8usize,
+            concat!("Alignment of ", stringify!(SReceiveCallbackDataC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).buf as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReceiveCallbackDataC),
+                "::",
+                stringify!(buf)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).size as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReceiveCallbackDataC),
+                "::",
+                stringify!(size)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).id as *const _ as usize },
+            16usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReceiveCallbackDataC),
+                "::",
+                stringify!(id)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).time as *const _ as usize },
+            24usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReceiveCallbackDataC),
+                "::",
+                stringify!(time)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReceiveCallbackDataC>())).clock as *const _ as usize },
+            32usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReceiveCallbackDataC),
+                "::",
+                stringify!(clock)
+            )
+        );
+    }
+
+    #[test]
+    fn bindgen_test_layout_SServiceInfoC() {
+        assert_eq!(
+            ::std::mem::size_of::<SServiceInfoC>(),
+            40usize,
+            concat!("Size of: ", stringify!(SServiceInfoC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SServiceInfoC>(),
+            8usize,
+            concat!("Alignment of ", stringify!(SServiceInfoC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).host_name as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(host_name)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).service_name as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(service_name)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).method_name as *const _ as usize },
+            16usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(method_name)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).error_msg as *const _ as usize },
+            24usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(error_msg)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).ret_state as *const _ as usize },
+            32usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(ret_state)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SServiceInfoC>())).call_state as *const _ as usize },
+            36usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SServiceInfoC),
+                "::",
+                stringify!(call_state)
+            )
+        );
+    }
+
+    #[test]
+    fn bindgen_test_layout_SReaderQOSC() {
+        assert_eq!(
+            ::std::mem::size_of::<SReaderQOSC>(),
+            12usize,
+            concat!("Size of: ", stringify!(SReaderQOSC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SReaderQOSC>(),
+            4usize,
+            concat!("Alignment of ", stringify!(SReaderQOSC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReaderQOSC),
+                "::",
+                stringify!(history_kind)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).history_kind_depth as *const _ as usize },
+            4usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReaderQOSC),
+                "::",
+                stringify!(history_kind_depth)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SReaderQOSC>())).reliability as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SReaderQOSC),
+                "::",
+                stringify!(reliability)
+            )
+        );
+    }
+    #[test]
+    fn bindgen_test_layout_SWriterQOSC() {
+        assert_eq!(
+            ::std::mem::size_of::<SWriterQOSC>(),
+            12usize,
+            concat!("Size of: ", stringify!(SWriterQOSC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SWriterQOSC>(),
+            4usize,
+            concat!("Alignment of ", stringify!(SWriterQOSC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SWriterQOSC),
+                "::",
+                stringify!(history_kind)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).history_kind_depth as *const _ as usize },
+            4usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SWriterQOSC),
+                "::",
+                stringify!(history_kind_depth)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SWriterQOSC>())).reliability as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SWriterQOSC),
+                "::",
+                stringify!(reliability)
+            )
+        );
+    }
+
+    #[test]
+    fn bindgen_test_layout_SSubEventCallbackDataC() {
+        assert_eq!(
+            ::std::mem::size_of::<SSubEventCallbackDataC>(),
+            24usize,
+            concat!("Size of: ", stringify!(SSubEventCallbackDataC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SSubEventCallbackDataC>(),
+            8usize,
+            concat!("Alignment of ", stringify!(SSubEventCallbackDataC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).type_ as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SSubEventCallbackDataC),
+                "::",
+                stringify!(type_)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).time as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SSubEventCallbackDataC),
+                "::",
+                stringify!(time)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SSubEventCallbackDataC>())).clock as *const _ as usize },
+            16usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SSubEventCallbackDataC),
+                "::",
+                stringify!(clock)
+            )
+        );
+    }
+    #[test]
+    fn bindgen_test_layout_SPubEventCallbackDataC() {
+        assert_eq!(
+            ::std::mem::size_of::<SPubEventCallbackDataC>(),
+            24usize,
+            concat!("Size of: ", stringify!(SPubEventCallbackDataC))
+        );
+        assert_eq!(
+            ::std::mem::align_of::<SPubEventCallbackDataC>(),
+            8usize,
+            concat!("Alignment of ", stringify!(SPubEventCallbackDataC))
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).type_ as *const _ as usize },
+            0usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SPubEventCallbackDataC),
+                "::",
+                stringify!(type_)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).time as *const _ as usize },
+            8usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SPubEventCallbackDataC),
+                "::",
+                stringify!(time)
+            )
+        );
+        assert_eq!(
+            unsafe { &(*(::std::ptr::null::<SPubEventCallbackDataC>())).clock as *const _ as usize },
+            16usize,
+            concat!(
+                "Offset of field: ",
+                stringify!(SPubEventCallbackDataC),
+                "::",
+                stringify!(clock)
+            )
+        );
+    }
 }
