@@ -967,10 +967,12 @@ pub enum eCallState {
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct SServiceInfoC {
-    #[doc = "!< service host"]
+    #[doc = "!< host name"]
     pub host_name: *const ::std::os::raw::c_char,
     #[doc = "!< service name"]
     pub service_name: *const ::std::os::raw::c_char,
+    #[doc = "!< service id"]
+    pub service_id: *const ::std::os::raw::c_char,
     #[doc = "!< method name"]
     pub method_name: *const ::std::os::raw::c_char,
     #[doc = "!< error message in case of failure"]
@@ -979,6 +981,10 @@ pub struct SServiceInfoC {
     pub ret_state: ::std::os::raw::c_int,
     #[doc = "!< service call state"]
     pub call_state: eCallState,
+    #[doc = "!< response from service call"]
+    pub response: *const ::std::os::raw::c_char,
+    #[doc = "!< response length"]
+    pub response_len: ::std::os::raw::c_int
 }
 
 impl Default for SServiceInfoC {
@@ -1120,6 +1126,7 @@ extern "C" {
     #[doc = " @param method_name_  Method name."]
     #[doc = " @param request_      Request message buffer."]
     #[doc = " @param request_len_  Request message length."]
+    #[doc = " @param timeout       Request timeout in milliseconds."]
     #[doc = ""]
     #[doc = " @return  None zero if succeeded."]
     pub fn eCAL_Client_Call(
@@ -1127,16 +1134,17 @@ extern "C" {
         method_name_: *const ::std::os::raw::c_char,
         request_: *const ::std::os::raw::c_char,
         request_len_: ::std::os::raw::c_int,
+        time_out_: ::std::os::raw::c_long,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[doc = " @brief Call method of this service (blocking variant with timeout)."]
     #[doc = ""]
     #[doc = " @param       handle_        Client handle."]
-    #[doc = " @param       host_name_     Host name."]
     #[doc = " @param       method_name_   Method name."]
     #[doc = " @param       request_       Request message buffer."]
     #[doc = " @param       request_len_   Request message length."]
+    #[doc = " @param       timeout_       timeout in milliseconds."]
     #[doc = " @param [out] service_info_  Service info struct with additional infos like call state and"]
     #[doc = "                             error message."]
     #[doc = " @param [out] response_      Pointer to the allocated buffer for the response message."]
@@ -1146,10 +1154,10 @@ extern "C" {
     #[doc = " @return  Size of response buffer if succeeded, otherwise zero."]
     pub fn eCAL_Client_Call_Wait(
         handle_: ECAL_HANDLE,
-        host_name_: *const ::std::os::raw::c_char,
         method_name_: *const ::std::os::raw::c_char,
         request_: *const ::std::os::raw::c_char,
         request_len_: ::std::os::raw::c_int,
+        time_out_: ::std::os::raw::c_long,
         service_info_: *mut SServiceInfoC,
         response_: *mut ::std::os::raw::c_void,
         response_len_: ::std::os::raw::c_int,
