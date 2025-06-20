@@ -1,4 +1,4 @@
-DEPRECATED: This repository is no longer maintained and has been archived as of June 20, 2025. It is provided as‑is for historical reference. For an actively maintained Rust eCAL binding, please see the [rustecal](https://github.com/eclipse-ecal/rustecal) project.
+DEPRECATED: This repository is not maintained and should be archived. For an actively maintained Rust eCAL binding, please see the [rustecal](https://github.com/eclipse-ecal/rustecal) project.
 
 # ecal-rs
 
